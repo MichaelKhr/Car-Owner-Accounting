@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,500&display=swap");
+
+body {
+    background-color: #17212f;
+    font-family: "Roboto", sans-serif;
+}
+
+._container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.spinner {
+    display: block;
+    margin: 0 auto;
+    max-width: 5rem;
+}

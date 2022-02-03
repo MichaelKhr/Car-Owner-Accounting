@@ -1,0 +1,92 @@
+.form {
+    background-color: #1f2d40;
+    margin-top: 1rem;
+    padding: 2rem;
+    @media (max-width: 1060px) {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__name-input:not(:last-child) {
+        margin-bottom: 2.4rem;
+    }
+
+    &__btn {
+        margin-right: 1rem;
+        @media (max-width: 600px) {
+            span {
+                display: none;
+            }
+        }
+    }
+
+    &__title {
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    &__error {
+        font-size: 0.7rem;
+        position: absolute;
+        left: 0.5rem;
+        top: 2.5rem;
+    }
+    &__repeat-car {
+        display: inline-block;
+        margin-left: 3rem;
+    }
+}
+
+.block-car {
+    padding: 1.5rem;
+    &__title {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-bottom: -1rem;
+    }
+    &__car {
+        display: flex;
+        margin: 0 -1rem;
+        margin-bottom: 1rem;
+        @media (max-width: 1060px) {
+            margin-top: 1rem;
+            flex-direction: column;
+        }
+    }
+    &__column {
+        flex: 0 0 230px;
+        padding: 0 1rem;
+        position: relative;
+        input::placeholder {
+            opacity: 0;
+        }
+        h5 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        @media (max-width: 1060px) {
+            flex: 0 0 3.5rem;
+            &_name {
+                display: none;
+            }
+            input::placeholder {
+                opacity: 1;
+            }
+        }
+    }
+    &__icon {
+        margin-right: 0.5rem;
+        @media (max-width: 600px) {
+            margin-right: 0;
+        }
+    }
+    &__new-auto {
+        margin-top: 1rem;
+        @media (max-width: 600px) {
+            span {
+                display: none;
+            }
+        }
+    }
+}

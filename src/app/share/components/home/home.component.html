@@ -1,0 +1,59 @@
+<div class="_container">
+    <div class="page__title">Владельцы авто:</div>
+    <div class="page__btns">
+      <button 
+      pButton pRipple
+      class="p-button-raised p-button-secondary" 
+      [routerLink]="['/crud', 'create', 'new']">
+        <i class="pi pi-plus"></i>
+        <span>Добавить</span>
+
+      </button>
+      <button 
+      pButton pRipple
+      class="p-button-raised p-button-info"  
+      [disabled]="!selectedOwner" 
+      [routerLink]="['/crud', 'read', selectedOwner?.id]">
+        <i class="pi pi-eye"></i>
+        <span>Посмотреть</span>
+      </button>
+      <button 
+      pButton pRipple
+      class="p-button-raised p-button-warning" 
+      [disabled]="!selectedOwner" 
+      [routerLink]="['/crud', 'update', selectedOwner?.id]">
+        <i class="pi pi-pencil"></i>
+        <span>Редактировать</span>
+      </button>
+      <button 
+      pButton pRipple
+      class="p-button-raised p-button-danger" 
+      [disabled]="!selectedOwner" (click)="deleteUser()">
+        <i class="pi pi-trash"></i>
+        <span>Удалить</span>
+      </button>
+    </div>
+    <div *ngIf="carOwnersServ.users; else loading">
+        <p-table [value]="carOwnersServ.users" selectionMode="single" [(selection)]="selectedOwner" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Автомобилей</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-person>
+                <tr [pSelectableRow]="person">
+                    <td>{{person.surname}}</td>
+                    <td>{{person.name}}</td>
+                    <td>{{person.patronymic}}</td>
+                    <td>{{person.cars.length}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <ng-template #loading >
+      <p-progressSpinner class="spinner"></p-progressSpinner>
+    </ng-template>
+  </div>

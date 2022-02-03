@@ -1,0 +1,29 @@
+.header {
+    min-height: 6rem;
+    &__title {
+        display: inline-block;
+        margin: 0 auto;
+        font-size: 3rem;
+        color: white;
+        &_mb {
+            color: white;
+            margin: 0 auto;
+            display: none;
+            font-size: 2.5rem;
+        }
+    }
+    @media (max-width: 704px) {
+        min-height: 3rem;
+        &__title {
+            font-size: 2rem;
+        }
+    }
+    @media (max-width: 450px) {
+        &__title {
+            display: none;
+            &_mb {
+                display: inline-block;
+            }
+        }
+    }
+}

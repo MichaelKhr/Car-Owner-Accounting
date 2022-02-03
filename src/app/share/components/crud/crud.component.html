@@ -1,0 +1,155 @@
+<div class="_container form">
+    <div>
+        <h3 class="form__title">Пользователь:</h3>
+        <form [formGroup]="userForm" (ngSubmit)="saveUser()" action="demo">
+            <div>
+                <span class="p-float-label form__name-input">
+                    <input id="float-input" type="text" pInputText formControlName="surname"> 
+                    <label for="float-input">Фамилия</label>
+                    <div *ngIf="userForm.get('surname')?.invalid && userForm.get('surname')?.touched">
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('surname')?.hasError('required')"
+                        >Это поле не может быть пустым</small>
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('surname')?.hasError('pattern')"
+                        >Это поле не может состоять из чисел</small>
+                    </div>
+                </span>
+                <span class="p-float-label form__name-input">
+                    <input id="float-input" type="text" pInputText formControlName="name"> 
+                    <label for="float-input">Имя</label>
+                    <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('name')?.hasError('required')"
+                        >Это поле не может быть пустым</small>
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('name')?.hasError('pattern')"
+                        >Это поле не может состоять из чисел</small>
+                    </div>
+                </span>
+                <span class="p-float-label form__name-input">
+                    <input id="float-input" type="text" pInputText formControlName="patronymic"> 
+                    <label for="float-input">Отчество</label>
+                    <div *ngIf="userForm.get('patronymic')?.invalid && userForm.get('patronymic')?.touched">
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('patronymic')?.hasError('required')"
+                        >Это поле не может быть пустым</small>
+                        <small id="username2-help" class="p-error form__error"
+                        *ngIf="userForm.get('patronymic')?.hasError('pattern')"
+                        >Это поле не может состоять из чисел</small>
+                    </div>
+                </span>
+            </div>
+            <div class="form__car-block block-car">
+                <h3 class="block-car__title">Автомобили:</h3>
+                <div class="block-car__car">
+                    <div class="block-car__column block-car__column_name">
+                        <h5>Номер</h5>
+                    </div>
+                    <div class="block-car__column block-car__column_name">
+                        <h5>Марка</h5>
+                    </div>
+                    <div class="block-car__column block-car__column_name">
+                        <h5>Модель</h5>
+                    </div>
+                    <div class="block-car__column block-car__column_name">
+                        <h5>Год</h5>
+                    </div> 
+                </div>
+                <div formArrayName="cars">
+                    <div >
+                        <div class="block-car__car" *ngFor="let car of fixBug(); let i = index" formGroupName="{{i}}" >
+                            <div class="block-car__column">
+                                <input type="text" pInputText formControlName="num" placeholder="Номер"> 
+                                
+                                <div *ngIf="car.get('num')?.invalid && car.get('num')?.touched">
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('num')?.hasError('required')"
+                                    >Это поле не может быть пустым</small>
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('num')?.hasError('pattern')"
+                                    >Корректный формат: АХ1111НР</small>
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('num')?.hasError('0')"
+                                    >Такой номер уже существует</small>
+                                </div>
+                            </div>
+                            <div class="block-car__column">
+                                <input type="text" pInputText formControlName="car_make" placeholder="Марка"> 
+                                <div *ngIf="car.get('car_make')?.invalid && car.get('car_make')?.touched">
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('car_make')?.hasError('required')"
+                                    >Это поле не может быть пустым</small>
+                                </div>
+                            </div>
+                            <div class="block-car__column">
+                                <input type="text" pInputText formControlName="car_model" placeholder="Модель"> 
+                                <div *ngIf="car.get('car_model')?.invalid && car.get('car_model')?.touched">
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('car_model')?.hasError('required')"
+                                    >Это поле не может быть пустым</small>
+                                </div>
+                            </div>
+                            <div class="block-car__column">
+                                <input type="text" pInputText formControlName="year" placeholder="Дата"> 
+                                <div *ngIf="car.get('year')?.invalid && car.get('year')?.touched">
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('year')?.hasError('required')"
+                                    >Это поле не может быть пустым</small>
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf="car.get('year')?.hasError('min')"
+                                    >Минимальное значение: {{car.get('year')?.getError('min').min}}</small>
+                                    <small id="username2-help" class="p-error form__error"
+                                    *ngIf=" car.get('year')?.hasError('max')"
+                                    >Максимальное значение: {{car.get('year')?.getError('max').max}}</small>
+                                </div>
+                            </div>
+                            <button pButton pRipple type="button" icon="pi pi-trash" 
+                            class="p-button-rounded p-button-danger p-button-outlined"
+                            (click)="removeCar(i)"
+                            *ngIf="!readMode"
+                            [disabled]="fixBug().length === 1"
+                            ></button>
+                        </div>
+                    </div>
+                </div>
+                <button pButton pRipple type="button" class="p-button-raised block-car__new-auto"
+                (click)="addAuto()"
+                *ngIf="!readMode"
+                >
+                    <i class="pi pi-plus block-car__icon"></i>
+                    <span>Добавить автомобиль</span>
+                </button> 
+                <small class="p-error form__repeat-car"
+                *ngIf="repeatCar"
+                >Два автомобиля с идентичным номером не могут существовать</small>
+                
+            </div>
+            <button pButton pRipple type="submit"
+            [disabled]="userForm.invalid || userForm.pending"
+            class="p-button-raised p-button-success form__btn"
+            *ngIf="createMode"
+            >
+                <i class="pi pi-save block-car__icon"></i>
+                <span>Опубликовать</span>
+            </button>
+            <button pButton pRipple type="submit"
+            [disabled]="userForm.invalid || userForm.pristine || userForm.pending"
+            class="p-button-raised p-button-success form__btn"
+            *ngIf="updateMode"
+            >
+                <i class="pi pi-save block-car__icon"></i>
+                <span>Сохранить</span>
+            </button>
+            <button pButton pRipple 
+            type="button" 
+            class="p-button-raised p-button-secondary form__btn"
+            [routerLink]="''"
+            >
+                <i class="pi pi-angle-left block-car__icon"></i>
+                <span>Назад</span>
+            </button>
+        </form>
+    </div>
+    
+</div>
